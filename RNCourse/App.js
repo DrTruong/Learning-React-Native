@@ -30,7 +30,9 @@ export default function App() {
       </View>
       <View style={styles.goalContainer}>
         {courseGoals.map((goal) => (
-          <Text key={Math.random().toString()}>{goal}</Text>
+          <View key={Math.random().toString()} style={styles.goalItems}>
+            <Text style={styles.goalText}>{goal}</Text>
+          </View> // sử dụng View để có thể áp dụng boderRadius cho Text style trong cả iOS và android
         ))}
       </View>
     </View>
@@ -61,5 +63,14 @@ const styles = StyleSheet.create({
   },
   goalContainer: {
     flex: 5,
+  },
+  goalItems: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: "#5e0acc",
+  },
+  goalText: {
+    color: "white",
   },
 });
