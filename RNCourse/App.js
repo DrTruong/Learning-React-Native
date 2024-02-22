@@ -2,12 +2,18 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 export default function App() {
-  const [enteredText, setEnteredGoalText] = useState("");
+  const [enteredGoalText, setEnteredGoalText] = useState("");
+  const [courseGoals, setCourseGoals] = useState([]);
+
   const goalInputHandler = (enteredText) => {
     setEnteredGoalText(enteredText);
   };
 
   const addGoalHandler = () => {
+    setCourseGoals((currentCourseGoals) => [
+      ...currentCourseGoals,
+      enteredGoalText,
+    ]);
     setEnteredGoalText("");
   };
 
@@ -15,6 +21,7 @@ export default function App() {
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
         <TextInput
+          value={enteredGoalText}
           style={styles.textInput}
           placeholder="Khóa học mục tiêu của bạn !"
           onChangeText={goalInputHandler}
@@ -22,7 +29,9 @@ export default function App() {
         <Button title="Thêm mục tiêu" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalContainer}>
-        <Text>Danh sách các mục tiêu...</Text>
+        {courseGoals.map((goal) => (
+          <Text key={Math.random().toString()}>{goal}</Text>
+        ))}
       </View>
     </View>
   );
