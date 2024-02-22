@@ -1,28 +1,21 @@
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <View style={styles.appContainer}>
       <View>
-        <Text>Another peace of text!</Text>
+        <TextInput placeholder="Khóa học mục tiêu của bạn !"></TextInput>
+        <Button title="Thêm mục tiêu" />
       </View>
-      <Text style={styles.dummyText}>HelloWorld!!!</Text>
-      <Button title="Tap me !!!" />
+      <View>
+        <Text>Danh sách các mục tiêu...</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  dummyText: {
-    margin: 16,
-    padding: 10,
-    borderWidth: 2,
-    borderColor: "red",
+  appContainer: {
+    padding: 50,
   },
 });
