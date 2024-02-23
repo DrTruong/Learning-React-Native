@@ -2,7 +2,8 @@ import { StyleSheet, View, Text, Pressable } from "react-native";
 
 const GoalItem = (props) => {
   return (
-    <Pressable onPress={props.onDeleteItem}>
+    // sử dụng hàm bind() để có thể trỏ đến GoalItem component này, và cho hàm onDeleteItem có thể sử dụng được các tham số ddos
+    <Pressable onPress={props.onDeleteItem.bind(this, props.id)}>
       <View style={styles.goalItems}>
         <Text style={styles.goalText}>{props.text}</Text>
       </View>
