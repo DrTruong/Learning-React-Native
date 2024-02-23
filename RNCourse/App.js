@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native";
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -29,11 +36,15 @@ export default function App() {
         <Button title="Thêm mục tiêu" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalContainer}>
-        {courseGoals.map((goal) => (
-          <View key={Math.random().toString()} style={styles.goalItems}>
-            <Text style={styles.goalText}>{goal}</Text>
-          </View> // sử dụng View để có thể áp dụng boderRadius cho Text style trong cả iOS và android
-        ))}
+        <ScrollView>
+          <View>
+            {courseGoals.map((goal) => (
+              <View key={Math.random().toString()} style={styles.goalItems}>
+                <Text style={styles.goalText}>{goal}</Text>
+              </View> // sử dụng View để có thể áp dụng boderRadius cho Text style trong cả iOS và android
+            ))}
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
