@@ -6,6 +6,7 @@ import {
   Button,
   TextInput,
   ScrollView,
+  FlatList,
 } from "react-native";
 
 export default function App() {
@@ -19,7 +20,7 @@ export default function App() {
   const addGoalHandler = () => {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      enteredGoalText,
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
     setEnteredGoalText("");
   };
@@ -36,15 +37,17 @@ export default function App() {
         <Button title="Thêm mục tiêu" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalContainer}>
-        <ScrollView>
-          <View>
-            {courseGoals.map((goal) => (
-              <View key={Math.random().toString()} style={styles.goalItems}>
-                <Text style={styles.goalText}>{goal}</Text>
-              </View> // sử dụng View để có thể áp dụng boderRadius cho Text style trong cả iOS và android
-            ))}
-          </View>
-        </ScrollView>
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => {
+            return (
+              <View style={styles.goalItems}>
+                <Text style={styles.goalText}>{itemData.item.text}</Text>
+              </View>
+            );
+          }}
+          keyExtractor={(item) => item.id}
+        ></FlatList>
       </View>
     </View>
   );
